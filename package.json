@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/alokg95/twitter-bot-nodejs/issues"
   },
-  "homepage": "https://github.com/alokg95/twitter-bot-nodejs#readme"
+  "homepage": "https://github.com/alokg95/twitter-bot-nodejs#readme",
+  "dependencies": {
+    "twit": "^2.1.0"
+  }
 }

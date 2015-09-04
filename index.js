@@ -8,14 +8,27 @@ var T = new twit({
   access_token_secret:  'JW9zxhT437WfPGTkhX5Rox8EcIYAMd2UAOoRZ6IzJ5jsP'
 });
 
-//
-//  tweet 'hello world!'
-//
-// T.post('statuses/update', { status: 'Hello World, from Node.js!' }, function(err, data, response) {
-//   console.log(data)
-// });
+function findStartupIdeas() {
+	T.get('search/tweets', {q: "#startupideas OR #startupidea", result_type: "recent"}, function (err, data,response) {
+		if (!err && data.statuses[0] && data.statuses[0].id_str) {
+			var tweet = data.statuses[0].id_str;
+			T.post('statuses/retweet/' + tweet, { }, function (err, response) {
+				if (response) {
+					console.log('Retweeted: ' + '"' + data.statuses[0].text + '" tweet ID: ' + data.statuses[0].id_str);
+				}
+				if (err) {
+					console.log('Retweet Error: ', err);
+				}
+			});
+		} else {
+			console.log('Error: ' + err);
+		}
+	});
+}
 
-T.get('search/tweets', { q: '#startupidea', count: 5, language: 'en'}, function(err, data, response) {
-  console.log(data)
-});
-
+findStartupIdeas();
+try{
+  setInterval(findStartupIdeas, 3600000);
+} catch (e){
+  console.error(e);
+}
