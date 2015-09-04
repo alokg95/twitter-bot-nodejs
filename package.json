@@ -1,5 +1,8 @@
 {
   "name": "twitter-bot-node",
+  "engines": {
+    "node": "0.12.x"
+  },
   "version": "1.0.0",
   "description": "twitter bot using node.js",
   "start": "index.js",
