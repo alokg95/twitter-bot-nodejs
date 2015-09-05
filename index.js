@@ -9,7 +9,7 @@ var T = new twit({
 });
 
 function findStartupIdeas() {
-	T.get('search/tweets', {q: "#startupideas OR #startupidea", result_type: "recent"}, function (err, data,response) {
+	T.get('search/tweets', {q: "#startupideas OR #startupidea", language: 'en', result_type: "recent"}, function (err, data,response) {
 		if (!err && data.statuses[0] && data.statuses[0].id_str) {
 			var tweet = data.statuses[0].id_str;
 			T.post('statuses/retweet/' + tweet, { }, function (err, response) {
